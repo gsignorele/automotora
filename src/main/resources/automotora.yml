@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  title: Automotora API
+  description: API para la gestión de automóviles en una automotora
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /autos:
+    post:
+      summary: Crear un nuevo automóvil
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auto'
+      responses:
+        '201':
+          description: Automóvil creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auto'
+    get:
+      summary: Obtener la lista de todos los automóviles
+      responses:
+        '200':
+          description: Lista de automóviles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Auto'
+  /autos/{id}:
+    get:
+      summary: Obtener detalles de un automóvil específico
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalles del automóvil
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auto'
+        '404':
+          description: Automóvil no encontrado
+    put:
+      summary: Actualizar la información de un automóvil específico
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auto'
+      responses:
+        '200':
+          description: Información del automóvil actualizada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auto'
+        '404':
+          description: Automóvil no encontrado
+    delete:
+      summary: Eliminar un automóvil específico
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Automóvil eliminado exitosamente
+        '404':
+          description: Automóvil no encontrado
+components:
+  schemas:
+    Auto:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        marca:
+          type: string
+          example: Toyota
+        modelo:
+          type: string
+          example: Corolla
+        año:
+          type: integer
+          example: 2020
+        color:
+          type: string
+          example: Rojo
