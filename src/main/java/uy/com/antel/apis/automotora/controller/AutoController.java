@@ -1,7 +1,5 @@
 package uy.com.antel.apis.automotora.controller;
 
-
-
 import uy.com.antel.apis.automotora.model.Auto;
 import uy.com.antel.apis.automotora.service.AutoService;
 import org.springframework.beans.factory.annotation.Autowired;
