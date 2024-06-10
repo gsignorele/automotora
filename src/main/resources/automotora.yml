@@ -14,14 +14,21 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Auto'
+              $ref: '#/components/schemas/Auto-Peticion'
       responses:
         '201':
           description: Automóvil creado exitosamente
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Auto'
+                $ref: '#/components/schemas/Auto-Respuesta'
+        '400':
+          description: Petición errónea
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          
     get:
       summary: Obtener la lista de todos los automóviles
       responses:
@@ -32,7 +39,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Auto'
+                  $ref: '#/components/schemas/Auto-Respuesta'
   /autos/{id}:
     get:
       summary: Obtener detalles de un automóvil específico
@@ -48,7 +55,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Auto'
+                $ref: '#/components/schemas/Auto-Respuesta'
         '404':
           description: Automóvil no encontrado
     put:
@@ -64,14 +71,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Auto'
+              $ref: '#/components/schemas/Auto-Respuesta'
       responses:
         '200':
           description: Información del automóvil actualizada
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Auto'
+                $ref: '#/components/schemas/Auto-Respuesta'
         '404':
           description: Automóvil no encontrado
     delete:
@@ -89,7 +96,7 @@ paths:
           description: Automóvil no encontrado
 components:
   schemas:
-    Auto:
+    Auto-Respuesta:
       type: object
       properties:
         id:
@@ -107,3 +114,31 @@ components:
         color:
           type: string
           example: Rojo
+        precio:
+          type: integer
+          example: 10000
+    Auto-Peticion:
+      type: object
+      properties:
+        marca:
+          type: string
+          example: Toyota
+        modelo:
+          type: string
+          example: Corolla
+        año:
+          type: integer
+          example: 2020
+        color:
+          type: string
+          example: Rojo
+        precio:
+          type: integer
+          example: 10000
+    Error:
+      type: object
+      properties:
+        mensaje:
+          type: string
+          example: El campo precio debe ser entero
+
