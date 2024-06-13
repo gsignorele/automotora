@@ -1,8 +1,10 @@
 package uy.com.antel.apis.automotora.controller;
 
+import uy.com.antel.apis.automotora.exceptions.InvalidColorException;
 import uy.com.antel.apis.automotora.model.Auto;
 import uy.com.antel.apis.automotora.service.AutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,13 +16,14 @@ public class AutoController {
 
     @Autowired
     private AutoService autoService;
-
+    
+   
     @PostMapping
     public ResponseEntity<Auto> createAuto(@RequestBody Auto auto) {
         Auto nuevoAuto = autoService.createAuto(auto);
         return ResponseEntity.status(201).body(nuevoAuto);
-    }
-
+    }        
+ 
     @GetMapping
     public ResponseEntity<List<Auto>> getAllAutos() {
         List<Auto> autos = autoService.getAllAutos();
@@ -30,7 +33,12 @@ public class AutoController {
     @GetMapping("/{id}")
     public ResponseEntity<Auto> getAutoById(@PathVariable Long id) {
         Auto auto = autoService.getAutoById(id);
-        return auto != null ? ResponseEntity.ok(auto) : ResponseEntity.notFound().build();
+        //return auto != null ? ResponseEntity.ok(auto) : ResponseEntity.notFound().build();
+        if (auto != null) {
+        	return ResponseEntity.ok(auto);
+        } else {
+        	return ResponseEntity.notFound().build();
+        }        
     }
 
     @PutMapping("/{id}")
@@ -42,6 +50,6 @@ public class AutoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAuto(@PathVariable Long id) {
         boolean deleted = autoService.deleteAuto(id);
-        return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+        return deleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
 }
