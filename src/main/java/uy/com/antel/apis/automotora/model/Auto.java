@@ -1,11 +1,11 @@
 package uy.com.antel.apis.automotora.model;
-/*
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-*/
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 
 public class Auto {
-   /*
+
 	@NotNull(message = "El id es obligatorio")
 	private Long id;
 
@@ -19,15 +19,7 @@ public class Auto {
 	private Integer año;
 	private String color; // Campo opcional	
   	private int precio; // Campo opcional
-	*/
-		
-	private Long id;	
-	private String marca;	
-	private String modelo;	
-	private Integer año;	
-	private String color; // Campo opcional	
-  	private int precio; // Campo opcional
-	 
+
   	 public Auto(Long id, String marca, String modelo, int año, String color, int precio) {
  		this.id = id;
  		this.marca = marca;
