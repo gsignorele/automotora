@@ -1,12 +1,13 @@
 package uy.com.antel.apis.automotora.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Auto {
-
-	@NotNull(message = "El id es obligatorio")
+	
 	private Long id;
 
 	@NotBlank(message = "La marca es obligatoria")
@@ -17,10 +18,13 @@ public class Auto {
 
 	@NotNull(message = "El año es obligatorio")
 	private Integer año;
+	
 	private String color; // Campo opcional	
-  	private int precio; // Campo opcional
+  	private Integer precio; // Campo opcional
 
-  	 public Auto(Long id, String marca, String modelo, int año, String color, int precio) {
+  	
+  	
+  	 public Auto(Long id, String marca, String modelo, int año, String color, Integer precio) {
  		this.id = id;
  		this.marca = marca;
  		this.modelo = modelo;
@@ -71,11 +75,11 @@ public class Auto {
         this.color = color;
     }
     
-    public int getPrecio() {
+    public Integer getPrecio() {
   		return precio;
   	}
 
-  	public void setPrecio(int precio) {
+  	public void setPrecio(Integer precio) {
   		this.precio = precio;
   	}
 }

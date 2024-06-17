@@ -15,13 +15,19 @@ public class ColorService {
 
     private List<String> validColors;
 
+    
     @PostConstruct
     public void init() {
         validColors = Arrays.asList(colorsString.split(","));
     }
 
     public boolean isValidColor(String color) {
-        return color == null || validColors.contains(color);
+    	if (validColors.contains(color)) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+        
     }
 
     public List<String> getValidColors() {

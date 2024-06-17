@@ -16,4 +16,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         
     }
+
+    @ExceptionHandler(NuevaException.class)
+    public ResponseEntity<ErrorResponse> handleNuevaException(NuevaException e) {
+    	ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        
+    }
+
 }

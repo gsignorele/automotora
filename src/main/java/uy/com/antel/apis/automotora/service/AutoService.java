@@ -22,10 +22,12 @@ public class AutoService {
     public Auto createAuto(Auto auto) {
     	if (colorService.isValidColor(auto.getColor().toLowerCase())) {    		
     		auto.setId(currentId++);
-        	autos.add(auto);
+        	autos.add(auto); 
         	return auto;
     	} else {
-    		throw new InvalidColorException("Color no válido: " + auto.getColor());
+    		InvalidColorException invalidException = new InvalidColorException("Color no válido: " + auto.getColor());
+    		throw invalidException;    		
+    		//throw new InvalidColorException("Color no válido: " + auto.getColor());
     	}
     }
 
